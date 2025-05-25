@@ -1,145 +1,1446 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <title>Exemple Complet de Page HTML</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mon Portfolio</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Segoe UI", sans-serif;
+    }
 
-  <!-- Lien vers le fichier CSS externe -->
-  <link rel="stylesheet" href="style.css">
+    /* Styles pour la section Compétences */
+.skills-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.skills-category {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+.skills-category h3 {
+  color: #2c3e50;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  position: relative;
+}
+
+.skills-category h3::after {
+  content: "";
+  display: block;
+  width: 50px;
+  height: 3px;
+  background: #4b6cb7;
+  margin: 0.5rem auto;
+  border-radius: 2px;
+}
+
+.skill-item {
+  margin-bottom: 1.2rem;
+}
+
+.skill-name {
+  font-weight: 600;
+  color: #3a4a6b;
+  margin-bottom: 0.3rem;
+}
+
+.skill-bar {
+  height: 8px;
+  background: #e0e6ed;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.skill-level {
+  height: 100%;
+  background: linear-gradient(90deg, #4b6cb7, #3a5a9f);
+  border-radius: 4px;
+  transition: width 1s ease-in-out;
+}
+
+@media (max-width: 768px) {
+  .skills-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+    .project-video {
+      width: 100%;
+      border-radius: 8px;
+      height: 180px;
+      object-fit: cover;
+      background-color: #000;
+      display: block;
+    }
+
+    /* Style pour la vidéo dans la modale */
+    .modal-video {
+      width: 100%;
+      max-height: 400px;
+      border-radius: 8px;
+      margin: 0 auto;
+      display: block;
+      background-color: #000;
+    }
+
+    .project-images video {
+      width: 100%;
+      height: auto;
+      max-height: 400px;
+      object-fit: contain;
+      border-radius: 8px;
+    }
+
+    body {
+      background: #f0f5f9;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    header {
+      position: relative;
+      color: #fff;
+      padding: 2rem;
+      height: 100vh;
+      min-height: 600px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+    }
+
+    .video-background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      overflow: hidden;
+    }
+
+    .video-background iframe {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      pointer-events: none;
+    }
+
+    .video-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: -1;
+    }
+
+    .header-content {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .profile-pic {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid rgba(255,255,255,0.3);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    }
+
+    .header-text {
+      margin-left: 30px;
+      flex-grow: 1;
+    }
+
+    header h1 {
+      font-size: 3rem;
+      margin-bottom: 0.5rem;
+      text-shadow: 0 2px 5px rgba(0,0,0,0.5);
+    }
+
+    header p {
+      font-size: 1.5rem;
+      opacity: 0.9;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+    }
+
+    .contact-info {
+      text-align: right;
+      background: rgba(255,255,255,0.2);
+      padding: 1.5rem;
+      border-radius: 12px;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+
+    .contact-info p {
+      margin: 0.5rem 0;
+      font-size: 1rem;
+    }
+
+    nav {
+      background: #fff;
+      padding: 1rem;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      box-shadow: 0 2px 15px rgba(0,0,0,0.08);
+    }
+
+    nav a {
+      color: #3a4a6b;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+    }
+
+    nav a:hover {
+      color: #fff;
+      background: #4b6cb7;
+    }
+
+    .section {
+      max-width: 1000px;
+      margin: auto;
+      padding: 3rem 1rem;
+    }
+
+    .section h2 {
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+      color: #2c3e50;
+      text-align: center;
+      position: relative;
+    }
+
+    .section h2::after {
+      content: "";
+      display: block;
+      width: 80px;
+      height: 4px;
+      background: #4b6cb7;
+      margin: 0.8rem auto;
+      border-radius: 2px;
+    }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    .project-card {
+      background: #fff;
+      padding: 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+      transition: all 0.3s ease;
+      border: 1px solid rgba(0,0,0,0.05);
+      cursor: pointer;
+    }
+
+    .project-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+    }
+
+    .project-card img {
+      width: 100%;
+      border-radius: 8px;
+      height: 180px;
+      object-fit: cover;
+    }
+
+    .project-card h3 {
+      margin-top: 1rem;
+      font-size: 1.3rem;
+      color: #2c3e50;
+    }
+
+    .project-card p {
+      color: #7f8c8d;
+      margin-top: 0.5rem;
+    }
+
+    /* Styles pour la section À propos */
+    .about-content {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .about-text {
+      line-height: 1.7;
+      color: #555;
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .work-process {
+      background: white;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      margin-top: 2rem;
+    }
+
+    .work-process h3 {
+      color: #2c3e50;
+      margin-bottom: 1rem;
+      text-align: center;
+      font-size: 1.5rem;
+    }
+
+    .work-process p {
+      margin-bottom: 1rem;
+      line-height: 1.6;
+    }
+
+    .work-process a {
+      color: #4b6cb7;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .work-process a:hover {
+      text-decoration: underline;
+    }
+
+    /* Nouvelle section "Mon parcours" */
+    .my-journey {
+      background: white;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      margin-top: 2rem;
+    }
+
+    .my-journey h3 {
+      color: #2c3e50;
+      margin-bottom: 1rem;
+      text-align: center;
+      font-size: 1.5rem;
+    }
+
+    .my-journey p {
+      margin-bottom: 1rem;
+      line-height: 1.6;
+    }
+
+    .timeline {
+      position: relative;
+      max-width: 800px;
+      margin: 2rem auto;
+    }
+
+    .timeline::after {
+      content: '';
+      position: absolute;
+      width: 4px;
+      background-color: #4b6cb7;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      margin-left: -2px;
+      border-radius: 2px;
+    }
+
+    .timeline-item {
+      padding: 10px 40px;
+      position: relative;
+      width: 50%;
+      box-sizing: border-box;
+    }
+
+    .timeline-item::after {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background-color: white;
+      border: 4px solid #4b6cb7;
+      border-radius: 50%;
+      top: 15px;
+      z-index: 1;
+    }
+
+    .left {
+      left: 0;
+      text-align: right;
+    }
+
+    .right {
+      left: 50%;
+      text-align: left;
+    }
+
+    .left::after {
+      right: -12px;
+    }
+
+    .right::after {
+      left: -12px;
+    }
+
+    .timeline-content {
+      padding: 20px;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    }
+
+    .timeline-date {
+      font-weight: bold;
+      color: #4b6cb7;
+      margin-bottom: 0.5rem;
+    }
+
+    .timeline-title {
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+      color: #2c3e50;
+    }
+
+    .timeline-description {
+      color: #7f8c8d;
+      font-size: 0.9rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      background: #2c3e50;
+      color: #ecf0f1;
+      margin-top: 4rem;
+    }
+
+    /* Styles pour les modales */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.8);
+      overflow-y: auto;
+    }
+
+    .modal-content {
+      background-color: #fefefe;
+      margin: 2% auto;
+      padding: 2rem;
+      border-radius: 10px;
+      width: 90%;
+      max-width: 800px;
+      box-shadow: 0 5px 30px rgba(0,0,0,0.3);
+      animation: modalopen 0.4s;
+      position: relative;
+    }
+
+    @keyframes modalopen {
+      from { opacity: 0; transform: translateY(-50px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .close-btn {
+      position: absolute;
+      right: 20px;
+      top: 20px;
+      color: #aaa;
+      font-size: 1.8rem;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .close-btn:hover {
+      color: #333;
+    }
+
+    .project-modal-content {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .project-header {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .project-title {
+      color: #2c3e50;
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .project-images {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .project-images img {
+      width: 100%;
+      border-radius: 8px;
+      height: 200px;
+      object-fit: cover;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+      transition: transform 0.3s;
+    }
+
+    .project-images img:hover {
+      transform: scale(1.02);
+    }
+
+    .project-details {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .project-description {
+      line-height: 1.7;
+      color: #555;
+    }
+
+    .project-technologies {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .tech-badge {
+      background: #4b6cb7;
+      color: white;
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+    }
+
+    /* Styles pour le formulaire de contact */
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: #2c3e50;
+      font-weight: 600;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 0.8rem;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      font-size: 1rem;
+      transition: border-color 0.3s;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: #4b6cb7;
+      box-shadow: 0 0 0 2px rgba(75, 108, 183, 0.2);
+    }
+
+    .submit-btn {
+      background: #4b6cb7;
+      color: white;
+      border: none;
+      padding: 0.8rem 1.5rem;
+      border-radius: 30px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+      display: block;
+      width: 100%;
+    }
+
+    .submit-btn:hover {
+      background: #3a5a9f;
+      transform: translateY(-2px);
+    }
+
+    .thank-you-message {
+      text-align: center;
+      padding: 2rem;
+    }
+
+    .thank-you-message h3 {
+      color: #2c3e50;
+      margin-bottom: 1rem;
+    }
+
+    .thank-you-message p {
+      color: #555;
+    }
+
+    /* Style pour le bouton "Me contacter" */
+    .contact-btn-container {
+      text-align: center;
+      margin-top: 2rem;
+    }
+
+    .contact-btn {
+      background: #4b6cb7;
+      color: white;
+      border: none;
+      padding: 0.8rem 2rem;
+      border-radius: 30px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+      box-shadow: 0 4px 10px rgba(75, 108, 183, 0.3);
+    }
+
+    .contact-btn:hover {
+      background: #3a5a9f;
+      transform: translateY(-3px);
+      box-shadow: 0 6px 15px rgba(75, 108, 183, 0.4);
+    }
+
+    .section-subtitle {
+      color: #7f8c8d;
+      text-align: center;
+      max-width: 600px;
+      margin: 0 auto 2rem;
+    }
+
+    /* Styles pour la section À venir */
+    .coming-soon-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .coming-soon-card {
+      background: #fff;
+      padding: 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+      transition: all 0.3s ease;
+      border: 1px solid rgba(0,0,0,0.05);
+      cursor: pointer;
+    }
+
+    .coming-soon-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+    }
+
+    .coming-soon-card img {
+      width: 100%;
+      border-radius: 8px;
+      height: 160px;
+      object-fit: cover;
+    }
+
+    .coming-soon-card h3 {
+      margin-top: 1rem;
+      font-size: 1.2rem;
+      color: #2c3e50;
+      text-align: center;
+    }
+
+    @media (max-width: 768px) {
+      header {
+        height: auto;
+        min-height: 100vh;
+        padding: 2rem 1rem;
+      }
+      
+      .header-content {
+        flex-direction: column;
+        text-align: center;
+      }
+      
+      .profile-pic {
+        width: 100px;
+        height: 100px;
+        margin-bottom: 1.5rem;
+      }
+      
+      .header-text {
+        margin-left: 0;
+        margin-bottom: 2rem;
+      }
+      
+      .contact-info {
+        margin-top: 1.5rem;
+        text-align: center;
+        width: 100%;
+      }
+      
+      nav {
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+
+      .modal-content {
+        margin: 5% auto;
+        width: 95%;
+        padding: 1.5rem;
+      }
+
+      header h1 {
+        font-size: 2.2rem;
+      }
+
+      header p {
+        font-size: 1.2rem;
+      }
+
+      .project-images {
+        grid-template-columns: 1fr;
+      }
+
+      .project-title {
+        font-size: 1.5rem;
+      }
+
+      /* Adaptation de la timeline pour mobile */
+      .timeline::after {
+        left: 31px;
+      }
+
+      .timeline-item {
+        width: 100%;
+        padding-left: 70px;
+        padding-right: 25px;
+      }
+
+      .timeline-item::after {
+        left: 21px;
+      }
+
+      .left, .right {
+        left: 0;
+        text-align: left;
+      }
+
+      .left::after, .right::after {
+        left: 21px;
+      }
+    }
+  </style>
 </head>
 <body>
 
-  <!-- En-tête principal de la page -->
   <header>
-    <h1>Page Démo HTML</h1>
-    <p>Structure complète avec divers éléments HTML</p>
+    <div class="video-background">
+      <iframe src="https://www.youtube.com/embed/sQ22pm-xvrE?autoplay=1&mute=1&loop=1&playlist=sQ22pm-xvrE&controls=0&showinfo=0&rel=0&modestbranding=1" frameborder="0" allowfullscreen></iframe>
+    </div>
+    <div class="video-overlay"></div>
+    
+    <div class="header-content">
+      <img src="C:\Users\micha\Downloads\Photo michael MIJ.jpg" alt="Ma photo" class="profile-pic">
+      <div class="header-text">
+        <h1>Michael MIJ</h1>
+        <p>Étudiant en Génie électrique et Technologies de l'information</p>
+      </div>
+      <div class="contact-info">
+        <p>📧 michaelmijamij@gmail.com</p>
+        <p>📱 438-379-9792</p>
+        <p>📍 Gatineau, Québec</p>
+      </div>
+    </div>
   </header>
 
-  <!-- Menu de navigation interne -->
   <nav>
-    <a href="#intro">Introduction</a> | 
-    <a href="#image">Image</a> | 
-    <a href="#table">Tableau</a> | 
-    <a href="#form">Formulaire</a>
+    <a href="#projets">Projets</a>
+    <a href="#apropos">À propos</a>
+    <a href="#avenir">À venir</a>
+    <a href="#contact">Contact</a>
   </nav>
 
-  <!-- Section d’introduction avec une liste -->
-  <section id="intro">
-    <h2>1. Introduction</h2>
-    <p>Voici une démonstration de plusieurs éléments HTML. Cette page a été créée pour apprendre à structurer des pages web.</p>
+  <section id="projets" class="section">
+    <h2>Mes Projets</h2>
+    <div class="project-grid">
+      <!-- Projet 1 -->
+      <div class="project-card" onclick="openProjectModal('projet1')">
+        <img src="C:\Users\micha\Downloads\Project 1 - DAP - Image 1.jpg" alt="Projet DAP">
+        <h3>Projet DAP</h3>
+        <p>Drone assistant pompiers</p>
+      </div>
+
+      <!-- Projet 2 -->
+      <div class="project-card" onclick="openProjectModal('projet2')">
+        <img src="C:\Users\micha\Downloads\Project 2 - Image 1.png" alt="Trajectoire de projectile">
+        <h3>Trajectoire de projectile</h3>
+        <p>Recupere la trajectoire d'un projectile</p>
+      </div>
+
+      <!-- Projet 3 -->
+      <div class="project-card" onclick="openProjectModal('projet3')">
+        <video autoplay loop muted playsinline class="project-video">
+          <source src="C:\Users\micha\Downloads\PresentationProjet.mp4" type="video/mp4">
+          Votre navigateur ne supporte pas les vidéos HTML5.
+        </video>
+        <h3>Pousser un fauteuil roulant de côté</h3>
+        <p>Pousser un fauteuil roulant de côté</p>
+      </div>
+
+      <!-- Projet 4 -->
+      <div class="project-card" onclick="openProjectModal('projet4')">
+        <img src="C:\Users\micha\Downloads\Project 4 - Image 1.jpg" alt="Domoric House">
+        <h3>Domoric House</h3>
+        <p>Domoric House</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="apropos" class="section">
+    <h2>À propos</h2>
+    <div class="about-content">
+      <div class="about-text">
+        <p>
+          Passionné par les technologies et l'innovation, je suis actuellement étudiant en Génie électrique 
+          avec une spécialisation en Technologies de l'information a l'Université d'Ottawa. Mon parcours académique et mes projets 
+          personnels m'ont permis de développer des compétences solides en développement logiciel, 
+          conception de systèmes électroniques et résolution de problèmes techniques complexes. 
+        </p>
+      </div>
+
+      <div class="work-process">
+        <h3>Comment je travaille</h3>
+        <p>Actuellement, je suis un cours de conception d'interfaces utilisateurs où j'apprends les principes fondamentaux du design. Je me forme aux bonnes pratiques de conception centrée sur l'utilisateur et aux méthodes d'évaluation heuristique.</p>
+        <p>Actuellement, dans mon parcours academique, je suis un cours ce semestre dans lequel je vais approfondir ces compétences et développer un processus de conception plus complet centre sur l'utilisateur.</p>
+      </div>
+
+      <div class="work-process">
+        <h3>Mon parcours</h3>
+        <p>Mon parcours académique et professionnel reflète ma passion pour l'ingénierie et les technologies. Après avoir obtenu mon diplôme en électronique industrielle, j'ai poursuivi des études en génie aéronautique avant de me spécialiser en génie électrique et technologies de l'information à l'Université d'Ottawa.</p>
+        <p>Chaque étape de mon parcours m'a permis d'acquérir des compétences techniques solides et une approche méthodique de la résolution de problèmes. Je continue à me former activement, notamment en gestion de projet et en cybersécurité, pour élargir mes compétences.</p>
+      </div>
+
+      <div class="timeline">
+        <!-- Étape 1 -->
+        <div class="timeline-item left">
+          <div class="timeline-content">
+            <div class="timeline-date">2014 - 2018</div>
+            <h3 class="timeline-title">Diplome d'etat (Baccalauréat) en electronique industrielle</h3>
+            <p class="timeline-description">
+              ITI Gombe, Kinshasa<br>
+            </p>
+          </div>
+        </div>
+
+        <!-- Étape 2 -->
+        <div class="timeline-item right">
+          <div class="timeline-content">
+            <div class="timeline-date">2018 - 2020</div>
+            <h3 class="timeline-title">Ingenierie Aeronautique</h3>
+            <p class="timeline-description">
+              AEROSUP, Casablanca<br>
+              Parcours d'ingenierie integre en Ganie Aeronautique
+            </p>
+          </div>
+        </div>
+
+        <!-- Étape 3 -->
+        <div class="timeline-item left">
+          <div class="timeline-content">
+            <div class="timeline-date">2020 - Present</div>
+            <h3 class="timeline-title">Baccalauréat en Génie électrique et Technologies de l'information</h3>
+            <p class="timeline-description">
+              Université d'Ottawa, Ottawa<br>
+              Option : Puissance et energie renouvellable
+            </p>
+          </div>
+        </div>
+
+        <!-- Étape 4 -->
+        <div class="timeline-item right">
+          <div class="timeline-content">
+            <div class="timeline-date">2025 - Présent</div>
+            <h3 class="timeline-title"> Formation en gestion de projet et cybersecurite</h3>
+            <p class="timeline-description">
+              Coursera<br>
+              Augmentation des capacite
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="avenir" class="section">
+    <h2>Projets à venir</h2>
+    <p class="about-text">Découvrez mes futurs projets de conception en cours de développement.</p>
     
-    <ul>
-      <li>Listes à puces</li>
-      <li>Balises sémantiques (section, header, footer, etc.)</li>
-      <li>Formulaires et tableaux</li>
-    </ul>
+    <div class="coming-soon-grid">
+      <!-- Projet 1 -->
+      <div class="coming-soon-card" onclick="openComingSoonModal('design1')">
+        <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Site de services">
+        <h3>Site de services dentaires</h3>
+      </div>
+
+      <!-- Projet 2 -->
+      <div class="coming-soon-card" onclick="openComingSoonModal('design2')">
+        <img src="https://images.unsplash.com/photo-1553481187-be93c21490a9?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Jeu en ligne">
+        <h3>Jeu de plateforme 2D</h3>
+      </div>
+
+      <!-- Projet 3 -->
+      <div class="coming-soon-card" onclick="openComingSoonModal('design3')">
+        <img src="https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Site e-commerce">
+        <h3>Boutique en ligne</h3>
+      </div>
+
+      <!-- Projet 4 -->
+      <div class="coming-soon-card" onclick="openComingSoonModal('design4')">
+        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Analyse de données">
+        <h3>Tableau de bord analytique</h3>
+      </div>
+    </div>
   </section>
 
-  <!-- Section contenant une image -->
-  <section id="image">
-    <h2>2. Image</h2>
-    <p>Voici une image responsive :</p>
-    <img src="Assets/img.jpg" alt="Exemple d'image">
+  <section id="competences" class="section">
+    <h2>Mes Compétences</h2>
+    
+    <div class="skills-container">
+      <!-- Compétences Techniques -->
+      <div class="skills-category">
+        <h3>Techniques</h3>
+        <div class="skills-list">
+          <div class="skill-item">
+            <div class="skill-name">Programmation (C, C++, Python, Java)</div>
+            <div class="skill-bar">
+              <div class="skill-level" style="width: 85%"></div>
+            </div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-name">Développement Web (HTML/CSS/JS)</div>
+            <div class="skill-bar">
+              <div class="skill-level" style="width: 75%"></div>
+            </div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-name">Systèmes embarqués et Systeme de Puissance</div>
+            <div class="skill-bar">
+              <div class="skill-level" style="width: 90%"></div>
+            </div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-name">Conception des circuits electronique</div>
+            <div class="skill-bar">
+              <div class="skill-level" style="width: 90%"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Compétences Professionnelles -->
+      <div class="skills-category">
+        <h3>Professionnelles</h3>
+        <div class="skills-list">
+          <div class="skill-item">
+            <div class="skill-name">Gestion de projet</div>
+            <div class="skill-bar">
+              <div class="skill-level" style="width: 70%"></div>
+            </div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-name">Travail d'équipe</div>
+            <div class="skill-bar">
+              <div class="skill-level" style="width: 95%"></div>
+            </div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-name">Résolution de problèmes</div>
+            <div class="skill-bar">
+              <div class="skill-level" style="width: 90%"></div>
+            </div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-name">Communication technique</div>
+            <div class="skill-bar">
+              <div class="skill-level" style="width: 90%"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Langues -->
+      <div class="skills-category">
+        <h3>Langues</h3>
+        <div class="skills-list">
+          <div class="skill-item">
+            <div class="skill-name">Français</div>
+            <div class="skill-bar">
+              <div class="skill-level" style="width: 100%"></div>
+            </div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-name">Anglais</div>
+            <div class="skill-bar">
+              <div class="skill-level" style="width: 90%"></div>
+            </div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-name">Lingala</div>
+            <div class="skill-bar">
+              <div class="skill-level" style="width: 100%"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
 
-  <!-- Section contenant un tableau -->
-  <section id="table">
-    <h2>3. Tableau</h2>
-    <p>Un exemple simple de tableau HTML :</p>
-    <table>
-      <thead>
-        <tr>
-          <th>Nom</th>
-          <th>Âge</th>
-          <th>Programme</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Ali</td>
-          <td>22</td>
-          <td>Génie logiciel</td>
-        </tr>
-        <tr>
-          <td>Sarah</td>
-          <td>21</td>
-          <td>Informatique</td>
-        </tr>
-      </tbody>
-    </table>
+  <section id="contact" class="section">
+    <h2>Contact</h2>
+    <p class="about-text">N'hésitez pas à me contacter pour toute question ou opportunité de collaboration.</p>
+    <div class="contact-btn-container">
+      <button id="contactBtn" class="contact-btn">Me contacter</button>
+    </div>
   </section>
 
-
-  <!-- Disposition avec Flexbox -->
-<section>
-    <h2>4. Disposition avec Flexbox – Cas Pratiques</h2>
-  
-    <!-- Cas 1 : Par défaut (row, wrap) -->
-    <h3>Cas 1 : Ligne par défaut (direction: row)</h3>
-    <div class="flex-demo row-default">
-      <div class="box">Bloc A</div>
-      <div class="box">Bloc B</div>
-      <div class="box">Bloc C</div>
-    </div>
-  
-    <!-- Cas 2 : direction colonne -->
-    <h3>Cas 2 : Colonne (direction: column)</h3>
-    <div class="flex-demo column-direction">
-      <div class="box">Bloc A</div>
-      <div class="box">Bloc B</div>
-      <div class="box">Bloc C</div>
-    </div>
-  
-    <!-- Cas 3 : Centrage horizontal et vertical -->
-    <h3>Cas 3 : Centrage horizontal et vertical</h3>
-    <div class="flex-demo centered">
-      <div class="box">Centré</div>
-    </div>
-  
-    <!-- Cas 4 : Espace entre les éléments -->
-    <h3>Cas 4 : Justify-content: space-between</h3>
-    <div class="flex-demo space-between">
-      <div class="box">Bloc A</div>
-      <div class="box">Bloc B</div>
-      <div class="box">Bloc C</div>
-    </div>
-  
-    <!-- Cas 5 : Aligner en bas (align-items: flex-end) -->
-    <h3>Cas 5 : Alignement en bas</h3>
-    <div class="flex-demo align-end">
-      <div class="box" style="height: 40px;">Bloc A</div>
-      <div class="box" style="height: 80px;">Bloc B</div>
-      <div class="box" style="height: 60px;">Bloc C</div>
-    </div>
-  
-  </section>
-  
-
-  <!-- Formulaire avec champs texte, menu déroulant et textarea -->
-  <section id="form">
-    <h2>5. Formulaire</h2>
-    <form>
-      <label for="nom">Nom :</label>
-      <input type="text" id="nom" name="nom" placeholder="Entrez votre nom">
-
-      <label for="programme">Programme :</label>
-      <select id="programme" name="programme">
-        <option>Génie logiciel</option>
-        <option>Informatique</option>
-        <option>Génie informatique</option>
-      </select>
-
-      <label for="commentaire">Commentaire :</label>
-      <textarea id="commentaire" name="commentaire" rows="4"></textarea>
-
-      <button type="submit" class="button">Soumettre</button>
-    </form>
-  </section>
-
-  <!-- Pied de page -->
   <footer>
-    <p>&copy; 2025 Université d’Ottawa - Démo HTML</p>
+    &copy; 2025 Michael MIJ. Tous droits réservés.
   </footer>
+
+  <!-- Modale de contact -->
+  <div id="contactModal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn">&times;</span>
+      
+      <div id="contactForm">
+        <h2 class="section-title">Contactez-moi</h2>
+        <p class="section-subtitle">Remplissez le formulaire ci-dessous et je vous répondrai dès que possible.</p>
+        
+        <form id="form">
+          <div class="form-group">
+            <label for="name">Nom complet</label>
+            <input type="text" id="name" name="name" required placeholder="Votre nom">
+          </div>
+          <div class="form-group">
+            <label for="email">Adresse email</label>
+            <input type="email" id="email" name="email" required placeholder="Votre email">
+          </div>
+          <div class="form-group">
+            <label for="phone">Numéro de téléphone</label>
+            <input type="tel" id="phone" name="phone" placeholder="Votre téléphone (optionnel)">
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" required rows="5" placeholder="Votre message..."></textarea>
+          </div>
+          <button type="submit" class="submit-btn">Envoyer le message</button>
+        </form>
+      </div>
+      
+      <div id="thankYouMessage" class="thank-you-message">
+        <h3>Merci pour votre message !</h3>
+        <p>Je vous répondrai dans les plus brefs délais.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modales des projets -->
+  <!-- Projet 1 -->
+  <div id="projet1-modal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeProjectModal('projet1')">&times;</span>
+      <div class="project-modal-content">
+        <div class="project-header">
+          <h3 class="project-title">Portfolio Responsive</h3>
+          <p>Un site vitrine moderne pour présenter vos projets professionnels</p>
+        </div>
+        
+        <div class="project-images">
+          <img src="C:\Users\micha\Downloads\Project 1 - DAP - Image 1.jpg" alt="Capture d'écran 1">
+          <img src="C:\Users\micha\Downloads\Project 1 - DAP - Image 2.jpg" alt="Capture d'écran 2">
+        </div>
+        
+        <div class="project-details">
+          <div class="project-description">
+            <p>L'objectif de ce projet est de concevoir un drone spécialisé dans l'assistance au secourisme.Cela reviendra a ajouté au Drone DJI Matrice M600 Pro des fonctionnalités particulières comme des pinces mécaniques contrôlable par radioguidage, l'amélioration de certaines facultés a l'exemple de la puissance des moteurs.
+  Une console de commande sera utilisée pour la commande du Drone. Le projet DAP intervient dans le concours « Drone for Good », qui permet aux étudiant d'AEROSUP de mettre leurs connaissances et les créativités techniques au service de l'évolution de l'aéronautiques avec des Drone. Ce projet sera réalisé par un trinôme se partageant la conception,
+  Certaines pièces rajoutées seront conçu et développé par nous-même ou fournit par des fournisseurs potentiel. </p>
+          </div>
+          
+          <div>
+            <h4>Technologies utilisées :</h4>
+            <div class="project-technologies">
+              <span class="tech-badge">CAO</span>
+              <span class="tech-badge">Programmetion Java, C++</span>
+              <span class="tech-badge">Aerodynamique</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Projet 2 -->
+  <div id="projet2-modal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeProjectModal('projet2')">&times;</span>
+      <div class="project-modal-content">
+        <div class="project-header">
+          <h3 class="project-title">Trajectoire de projectile</h3>
+          <p>Trajectoire de projectile</p>
+        </div>
+        
+        <div class="project-images">
+          <img src="C:\Users\micha\Downloads\Project 2 - Image 2.jpg" alt="Capture d'écran 1">
+          <img src="C:\Users\micha\Downloads\Project 2 - Image 3.jpg" alt="Capture d'écran 2">
+        </div>
+        
+        <div class="project-details">
+          <div class="project-description">
+            <p>Le but de ce projet est de concevoir un systeme pour retrouver la trajectoire d'un projectile pour la police d'Ottawa.</p>
+          </div>
+          
+          <div>
+            <h4>Technologies utilisées :</h4>
+            <div class="project-technologies">
+              <span class="tech-badge">CAO</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Projet 3 -->
+  <div id="projet3-modal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeProjectModal('projet3')">&times;</span>
+      <div class="project-modal-content">
+        <div class="project-header">
+          <h3 class="project-title">Pousser un fauteuil roulant de cote</h3>
+          <p>Pousser un fauteuil roulant de cote</p>
+        </div>
+        
+        <div class="project-images">
+          <video controls class="modal-video">
+            <source src="C:\Users\micha\Downloads\Video_Project3.mp4" type="video/mp4">
+            Votre navigateur ne supporte pas les vidéos HTML5.
+          </video>
+        </div>
+        
+        <div class="project-details">
+          <div class="project-description">
+            <p>Le but de ce projet est de concevoir un systeme pour permettre de pousser un fauteuil roulant etant de cote. </p>
+          </div>
+          
+          <div>
+            <h4>Technologies utilisées :</h4>
+            <div class="project-technologies">
+              <span class="tech-badge">CAO</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Projet 4 -->
+  <div id="projet4-modal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeProjectModal('projet4')">&times;</span>
+      <div class="project-modal-content">
+        <div class="project-header">
+          <h3 class="project-title">Domotic House</h3>
+          <p>Domotic House</p>
+        </div>
+        
+        <div class="project-images">
+          <img src="C:\Users\micha\Downloads\Project 4 - Image 2.jpg" alt="Fil d'actualité">
+          <img src="C:\Users\micha\Downloads\Project 4 - Image 3.jpg" alt="Profil utilisateur">
+        </div>
+        
+        <div class="project-details">
+          <div class="project-description">
+            <p>Ce projet est notre projet de fin d'annee. Le but but est d'automatise une maison, en y integrant le controle intelligent de l'electricite.</p>
+            </div>
+          
+          <div>
+            <h4>Technologies utilisées :</h4>
+            <div class="project-technologies">
+              <span class="tech-badge">Programmtion Java, C</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modales des projets à venir -->
+  <!-- Design 1 -->
+  <div id="design1-modal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeComingSoonModal('design1')">&times;</span>
+      <div class="project-modal-content">
+        <div class="project-header">
+          <h3 class="project-title">Site de services dentaires</h3>
+          <p>Un futur projet de conception de site web pour un cabinet dentaire</p>
+        </div>
+        
+        <div class="project-images">
+          <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Site de services">
+        </div>
+        
+        <div class="project-details">
+          <div class="project-description">
+            <p>Ce futur projet consistera à concevoir un site web moderne pour un cabinet dentaire. Le site permettra aux patients de prendre rendez-vous en ligne, de consulter les services offerts et d'accéder à des informations utiles sur la santé.</p>
+            <p>Le design mettra l'accent sur une expérience utilisateur avec une palette de couleurs douces et une navigation intuitive.</p>
+          </div>
+          
+          <div>
+            <h4>Fonctionnalités prévues :</h4>
+            <div class="project-technologies">
+              <span class="tech-badge">Prise de rendez-vous en ligne</span>
+              <span class="tech-badge">Galerie de travaux</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Design 2 -->
+  <div id="design2-modal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeComingSoonModal('design2')">&times;</span>
+      <div class="project-modal-content">
+        <div class="project-header">
+          <h3 class="project-title">Jeu de plateforme 2D</h3>
+          <p>Un futur projet de développement de jeu vidéo</p>
+        </div>
+        
+        <div class="project-images">
+          <img src="https://images.unsplash.com/photo-1553481187-be93c21490a9?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Jeu en ligne">
+        </div>
+        
+        <div class="project-details">
+          <div class="project-description">
+            <p>Ce projet consistera à développer un jeu de plateforme 2D ou 3D.</p>
+            <p>Le jeu sera développé en utilisant des technologies web modernes pour être accessible directement dans le navigateur.</p>
+          </div>
+          
+          <div>
+            <h4>Éléments clés :</h4>
+            <div class="project-technologies">
+              <span class="tech-badge">HTML5 Canvas</span>
+              <span class="tech-badge">JavaScript</span>
+              <span class="tech-badge">Design de niveaux</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Design 3 -->
+  <div id="design3-modal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeComingSoonModal('design3')">&times;</span>
+      <div class="project-modal-content">
+        <div class="project-header">
+          <h3 class="project-title">Boutique en ligne</h3>
+          <p>Un futur projet de site e-commerce</p>
+        </div>
+        
+        <div class="project-images">
+          <img src="https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Site e-commerce">
+        </div>
+        
+        <div class="project-details">
+          <div class="project-description">
+            <p>Ce projet consistera à concevoir et développer une boutique en ligne complète avec système de paiement intégré.</p>
+            <p>Le design mettra l'accent sur la simplicité de navigation et la mise en valeur des produits.</p>
+          </div>
+          
+          <div>
+            <h4>Fonctionnalités prévues :</h4>
+            <div class="project-technologies">
+              <span class="tech-badge">Catalogue produits</span>
+              <span class="tech-badge">Panier d'achat</span>
+              <span class="tech-badge">Paiement sécurisé</span>
+              <span class="tech-badge">Gestion des commandes</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Design 4 -->
+  <div id="design4-modal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeComingSoonModal('design4')">&times;</span>
+      <div class="project-modal-content">
+        <div class="project-header">
+          <h3 class="project-title">Tableau de bord analytique</h3>
+          <p>Un futur projet de visualisation de données</p>
+        </div>
+        
+        <div class="project-images">
+          <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Analyse de données">
+        </div>
+        
+        <div class="project-details">
+          <div class="project-description">
+            <p>Ce projet a pour objectif de concevoir un tableau de bord interactif permettant de visualiser et d'analyser des données complexes. Il vise à convertir des données brutes en informations exploitables à travers des visualisations claires, pertinentes et personnalisables.</p>
+            <p>Le design mettra l'accent sur la clarté des informations tout en permettant une exploration approfondie des données.</p>
+          </div>
+          
+          <div>
+            <h4>Technologies envisagées :</h4>
+            <div class="project-technologies">
+              <span class="tech-badge">Visualisation de données</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Gestion de la modale de contact
+    const contactModal = document.getElementById("contactModal");
+    const contactBtn = document.getElementById("contactBtn");
+    const closeContactBtn = document.querySelector("#contactModal .close-btn");
+    const contactForm = document.getElementById("contactForm");
+    const thankYouMessage = document.getElementById("thankYouMessage");
+    const form = document.getElementById("form");
+
+    // Ouvrir la modale de contact
+    contactBtn.onclick = function() {
+      contactModal.style.display = "block";
+      contactForm.style.display = "block";
+      thankYouMessage.style.display = "none";
+      form.reset();
+    }
+
+    // Fermer la modale de contact
+    closeContactBtn.onclick = function() {
+      contactModal.style.display = "none";
+    }
+
+    // Fermer quand on clique en dehors
+    window.onclick = function(event) {
+      if (event.target == contactModal) {
+        contactModal.style.display = "none";
+      }
+      const comingSoonModals = ['design1', 'design2', 'design3', 'design4'];
+      comingSoonModals.forEach(designId => {
+        const modal = document.getElementById(`${designId}-modal`);
+        if (modal && event.target == modal) {
+          closeComingSoonModal(designId);
+        }
+      });
+    }
+
+    // Gestion de l'envoi du formulaire de contact
+    form.addEventListener("submit", function(e) {
+      e.preventDefault();
+      
+      const formData = {
+        name: document.getElementById("name").value,
+        email: document.getElementById("email").value,
+        phone: document.getElementById("phone").value,
+        message: document.getElementById("message").value
+      };
+      
+      console.log("Message reçu:", formData);
+      
+      contactForm.style.display = "none";
+      thankYouMessage.style.display = "block";
+      
+      setTimeout(function() {
+        contactModal.style.display = "none";
+      }, 3000);
+    });
+
+    // Gestion des modales de projets
+    function openProjectModal(projectId) {
+      const modal = document.getElementById(`${projectId}-modal`);
+      modal.style.display = "block";
+      document.body.style.overflow = "hidden";
+      
+      // Si c'est la modale avec vidéo, on met la vidéo en lecture
+      if (projectId === 'projet3') {
+        const video = modal.querySelector('video');
+        if (video) {
+          video.currentTime = 0;
+          video.play();
+        }
+      }
+    }
+
+    function closeProjectModal(projectId) {
+      const modal = document.getElementById(`${projectId}-modal`);
+      modal.style.display = "none";
+      document.body.style.overflow = "auto";
+      
+      // Si c'est la modale avec vidéo, on met la vidéo en pause
+      if (projectId === 'projet3') {
+        const video = modal.querySelector('video');
+        if (video) {
+          video.pause();
+        }
+      }
+    }
+
+    // Gestion des modales de projets à venir
+    function openComingSoonModal(designId) {
+      const modal = document.getElementById(`${designId}-modal`);
+      modal.style.display = "block";
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeComingSoonModal(designId) {
+      const modal = document.getElementById(`${designId}-modal`);
+      modal.style.display = "none";
+      document.body.style.overflow = "auto";
+    }
+
+    // Fermer les modales de projet quand on clique en dehors
+    window.addEventListener('click', function(event) {
+      const projectModals = ['projet1', 'projet2', 'projet3', 'projet4'];
+      projectModals.forEach(projectId => {
+        const modal = document.getElementById(`${projectId}-modal`);
+        if (modal && event.target == modal) {
+          closeProjectModal(projectId);
+        }
+      });
+    });
+  </script>
 
 </body>
 </html>
