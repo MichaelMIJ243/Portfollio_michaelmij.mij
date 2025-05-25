@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Exemple Complet de Page HTML</title>
+
+  <!-- Lien vers le fichier CSS externe -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- En-tête principal de la page -->
+  <header>
+    <h1>Page Démo HTML</h1>
+    <p>Structure complète avec divers éléments HTML</p>
+  </header>
+
+  <!-- Menu de navigation interne -->
+  <nav>
+    <a href="#intro">Introduction</a> | 
+    <a href="#image">Image</a> | 
+    <a href="#table">Tableau</a> | 
+    <a href="#form">Formulaire</a>
+  </nav>
+
+  <!-- Section d’introduction avec une liste -->
+  <section id="intro">
+    <h2>1. Introduction</h2>
+    <p>Voici une démonstration de plusieurs éléments HTML. Cette page a été créée pour apprendre à structurer des pages web.</p>
+    
+    <ul>
+      <li>Listes à puces</li>
+      <li>Balises sémantiques (section, header, footer, etc.)</li>
+      <li>Formulaires et tableaux</li>
+    </ul>
+  </section>
+
+  <!-- Section contenant une image -->
+  <section id="image">
+    <h2>2. Image</h2>
+    <p>Voici une image responsive :</p>
+    <img src="Assets/img.jpg" alt="Exemple d'image">
+  </section>
+
+  <!-- Section contenant un tableau -->
+  <section id="table">
+    <h2>3. Tableau</h2>
+    <p>Un exemple simple de tableau HTML :</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Nom</th>
+          <th>Âge</th>
+          <th>Programme</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Ali</td>
+          <td>22</td>
+          <td>Génie logiciel</td>
+        </tr>
+        <tr>
+          <td>Sarah</td>
+          <td>21</td>
+          <td>Informatique</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+
+  <!-- Disposition avec Flexbox -->
+<section>
+    <h2>4. Disposition avec Flexbox – Cas Pratiques</h2>
+  
+    <!-- Cas 1 : Par défaut (row, wrap) -->
+    <h3>Cas 1 : Ligne par défaut (direction: row)</h3>
+    <div class="flex-demo row-default">
+      <div class="box">Bloc A</div>
+      <div class="box">Bloc B</div>
+      <div class="box">Bloc C</div>
+    </div>
+  
+    <!-- Cas 2 : direction colonne -->
+    <h3>Cas 2 : Colonne (direction: column)</h3>
+    <div class="flex-demo column-direction">
+      <div class="box">Bloc A</div>
+      <div class="box">Bloc B</div>
+      <div class="box">Bloc C</div>
+    </div>
+  
+    <!-- Cas 3 : Centrage horizontal et vertical -->
+    <h3>Cas 3 : Centrage horizontal et vertical</h3>
+    <div class="flex-demo centered">
+      <div class="box">Centré</div>
+    </div>
+  
+    <!-- Cas 4 : Espace entre les éléments -->
+    <h3>Cas 4 : Justify-content: space-between</h3>
+    <div class="flex-demo space-between">
+      <div class="box">Bloc A</div>
+      <div class="box">Bloc B</div>
+      <div class="box">Bloc C</div>
+    </div>
+  
+    <!-- Cas 5 : Aligner en bas (align-items: flex-end) -->
+    <h3>Cas 5 : Alignement en bas</h3>
+    <div class="flex-demo align-end">
+      <div class="box" style="height: 40px;">Bloc A</div>
+      <div class="box" style="height: 80px;">Bloc B</div>
+      <div class="box" style="height: 60px;">Bloc C</div>
+    </div>
+  
+  </section>
+  
+
+  <!-- Formulaire avec champs texte, menu déroulant et textarea -->
+  <section id="form">
+    <h2>5. Formulaire</h2>
+    <form>
+      <label for="nom">Nom :</label>
+      <input type="text" id="nom" name="nom" placeholder="Entrez votre nom">
+
+      <label for="programme">Programme :</label>
+      <select id="programme" name="programme">
+        <option>Génie logiciel</option>
+        <option>Informatique</option>
+        <option>Génie informatique</option>
+      </select>
+
+      <label for="commentaire">Commentaire :</label>
+      <textarea id="commentaire" name="commentaire" rows="4"></textarea>
+
+      <button type="submit" class="button">Soumettre</button>
+    </form>
+  </section>
+
+  <!-- Pied de page -->
+  <footer>
+    <p>&copy; 2025 Université d’Ottawa - Démo HTML</p>
+  </footer>
+
+</body>
+</html>
