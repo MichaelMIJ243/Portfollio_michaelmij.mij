@@ -900,22 +900,16 @@
     <p class="about-text">Découvrez mes futurs projets de conception en cours de développement.</p>
     
     <div class="coming-soon-grid">
-      <!-- Projet Jeu de mémoire -->
-      <div class="coming-soon-card" onclick="window.open('https://seg-3505-jeudememoire-nqwu.vercel.app/', '_blank')">
-        <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Jeu de mémoire">
-        <h3>Jeu de mémoire</h3>
-      </div>
-
-      <!-- Projet Site dentiste -->
+      <!-- Projet 1 - Site dentiste -->
       <div class="coming-soon-card" onclick="window.open('https://seg-3525-agencedentaire.vercel.app/', '_blank')">
         <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Site de services">
         <h3>Site de services dentaires</h3>
       </div>
 
-      <!-- Projet Boutique en ligne -->
-      <div class="coming-soon-card" onclick="openComingSoonModal('design3')">
-        <img src="https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Site e-commerce">
-        <h3>Boutique en ligne</h3>
+      <!-- Projet 2 - Boutique de musique -->
+      <div class="coming-soon-card" onclick="window.open('https://seg-3505-ecommerce.vercel.app/', '_blank')">
+        <img src="https://images.unsplash.com/photo-1553481187-be93c21490a9?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Boutique de musique">
+        <h3>Boutique en ligne de musique</h3>
       </div>
     </div>
   </section>
@@ -1194,28 +1188,60 @@
   </div>
 
   <!-- Modales des projets à venir -->
-  <!-- Design 3 -->
-  <div id="design3-modal" class="modal">
+  <!-- Design 1 -->
+  <div id="design1-modal" class="modal">
     <div class="modal-content">
-      <span class="close-btn" onclick="closeComingSoonModal('design3')">&times;</span>
+      <span class="close-btn" onclick="closeComingSoonModal('design1')">&times;</span>
       <div class="project-modal-content">
         <div class="project-header">
-          <h3 class="project-title">Boutique en ligne</h3>
-          <p>Un futur projet de site e-commerce</p>
+          <h3 class="project-title">Site de services dentaires</h3>
+          <p>Un futur projet de conception de site web pour un cabinet dentaire</p>
         </div>
         
         <div class="project-images">
-          <img src="https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Site e-commerce">
+          <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Site de services">
         </div>
         
         <div class="project-details">
           <div class="project-description">
-            <p>Ce projet consistera à concevoir et développer une boutique en ligne complète avec système de paiement intégré.</p>
-            <p>Le design mettra l'accent sur la simplicité de navigation et la mise en valeur des produits.</p>
+            <p>Ce futur projet consistera à concevoir un site web moderne pour un cabinet dentaire. Le site permettra aux patients de prendre rendez-vous en ligne, de consulter les services offerts et d'accéder à des informations utiles sur la santé.</p>
+            <p>Le design mettra l'accent sur une expérience utilisateur avec une palette de couleurs douces et une navigation intuitive.</p>
           </div>
           
           <div>
             <h4>Fonctionnalités prévues :</h4>
+            <div class="project-technologies">
+              <span class="tech-badge">Prise de rendez-vous en ligne</span>
+              <span class="tech-badge">Galerie de travaux</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Design 2 -->
+  <div id="design2-modal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeComingSoonModal('design2')">&times;</span>
+      <div class="project-modal-content">
+        <div class="project-header">
+          <h3 class="project-title">Boutique en ligne de musique</h3>
+          <p>Un site e-commerce spécialisé dans les instruments et accessoires de musique</p>
+        </div>
+        
+        <div class="project-images">
+          <img src="https://images.unsplash.com/photo-1553481187-be93c21490a9?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Boutique de musique">
+        </div>
+        
+        <div class="project-details">
+          <div class="project-description">
+            <p>Ce projet est une boutique en ligne complète spécialisée dans la vente d'instruments de musique et d'accessoires. Le site propose un catalogue varié, un système de panier d'achat et un processus de paiement sécurisé.</p>
+            <p>L'interface est conçue pour offrir une excellente expérience utilisateur avec une navigation intuitive et des fonctionnalités de recherche avancée.</p>
+          </div>
+          
+          <div>
+            <h4>Fonctionnalités clés :</h4>
             <div class="project-technologies">
               <span class="tech-badge">Catalogue produits</span>
               <span class="tech-badge">Panier d'achat</span>
@@ -1255,7 +1281,7 @@
       if (event.target == contactModal) {
         contactModal.style.display = "none";
       }
-      const comingSoonModals = ['design3'];
+      const comingSoonModals = ['design1', 'design2'];
       comingSoonModals.forEach(designId => {
         const modal = document.getElementById(`${designId}-modal`);
         if (modal && event.target == modal) {
@@ -1318,18 +1344,14 @@
     // Gestion des modales de projets à venir
     function openComingSoonModal(designId) {
       const modal = document.getElementById(`${designId}-modal`);
-      if (modal) {
-        modal.style.display = "block";
-        document.body.style.overflow = "hidden";
-      }
+      modal.style.display = "block";
+      document.body.style.overflow = "hidden";
     }
 
     function closeComingSoonModal(designId) {
       const modal = document.getElementById(`${designId}-modal`);
-      if (modal) {
-        modal.style.display = "none";
-        document.body.style.overflow = "auto";
-      }
+      modal.style.display = "none";
+      document.body.style.overflow = "auto";
     }
 
     // Fermer les modales de projet quand on clique en dehors
